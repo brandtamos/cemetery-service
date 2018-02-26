@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
 
 app.get('/cemetery/schedule/1', function (req, res) {
 	var schedule = {
-					  "CemeteryName": "XYZ National Cemetary",
+					  "CemeteryName": "XYZ National Cemetery",
 					  "CemeteryInstructions": "Make sure everything is correct",
 					  "SchedulingInfo": {
 					    "SchedulingPeriodUnitMinutes": "15",
@@ -37,7 +37,34 @@ app.get('/cemetery/schedule/1', function (req, res) {
 					};
  	res.send(schedule);
 });
- 
+
+app.get('/cemetery/statuses', function (req, res){
+	var cemeteries = {
+        "Cemeteries": [
+            {
+                "CemeteryName": "Arlington National Cemetery",
+                "CemeteryStatus": "Accepting All Interment Types"
+            },
+            {
+                "CemeteryName": "Bakersfield National Cemetery",
+                "CemeteryStatus": "Accepting All Interment Types"
+            },
+            {
+                "CemeteryName": "Balls Bluff National Cemetery",
+                "CemeteryStatus": "Accepting All Interment Types"
+            },
+            {
+                "CemeteryName": "Baltimore National Cemetery",
+                "CemeteryStatus": "Accepting All Interment Types"
+            },
+            {
+                "CemeteryName": "Alexandria National Cemetery",
+                "CemeteryStatus": "Accepting All Interment Types"
+            }
+        ]
+    };
+	res.send(cemeteries);
+});
 var server = app.listen(PORT, function () {
 	var host = server.address().address;
 	host = (host === '::' ? 'localhost' : host);
