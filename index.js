@@ -5,10 +5,10 @@ app.get('/', function (req, res) {
  	res.send('Hello World!');
 });
 
-app.get('/cemetary/schedule/1', function (req, res) {
+app.get('/cemetery/schedule/1', function (req, res) {
 	var schedule = {
-					  "CemetaryName": "XYZ National Cemetary",
-					  "CemetaryInstructions": "Make sure everything is correct",
+					  "CemeteryName": "XYZ National Cemetary",
+					  "CemeteryInstructions": "Make sure everything is correct",
 					  "SchedulingInfo": {
 					    "SchedulingPeriodUnitMinutes": "15",
 					    "Schedule": [
