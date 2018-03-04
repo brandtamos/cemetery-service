@@ -3,7 +3,7 @@ var moment = require('moment');
 
 var scheduler  = function () {
     var self = this;
-    var offset = '-500';
+    var offset = '-0500';
 
     this.getAvailability = function(startDate, endDate){
         var currentTime = moment(startDate * 1000).utcOffset(offset).startOf('day').add(9, 'hours');
