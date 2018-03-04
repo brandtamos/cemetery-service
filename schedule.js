@@ -6,7 +6,7 @@ var scheduler  = function () {
     this.getAvailability = function(startDate, endDate){
         var currentTime = moment(startDate * 1000).utcOffset('+0400').startOf('day').add(9, 'hours');
 
-        var endTime = moment(endDate * 1000).utcOffset('+0400').startOf('day').add(17, 'hours');
+        var endTime = moment(endDate * 1000).utcOffset('-0400').startOf('day').add(17, 'hours');
 
         var timeSlots = [];
         while(currentTime < endTime){
