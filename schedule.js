@@ -8,13 +8,13 @@ var scheduler  = function () {
 
         var endTime = moment(endDate * 1000).startOf('day').add(17, 'hours');
 
-        var availability = [];
+        var timeSlots = [];
         while(currentTime < endTime){
             var timeslot = {
                 "time": currentTime.unix(),
                 "status": Math.floor(Math.random() * 10) % 2 == 0 ? "AVAILABLE" : "UNAVAILABLE"
             }
-            availability.push(timeslot);
+            timeSlots.push(timeslot);
 
             currentTime.add(1, 'hours');
 
@@ -22,6 +22,11 @@ var scheduler  = function () {
                 currentTime.add(1, 'days').startOf('day').add(9, 'hours');
             }
         }
+
+        var availability = {
+            "cemeteryId" : "SomeGuidHere",
+            "timeSlots" : timeSlots
+        };
         return availability;
     };
 };
