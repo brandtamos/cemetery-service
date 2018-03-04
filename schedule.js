@@ -4,9 +4,9 @@ var moment = require('moment');
 var scheduler  = function () {
     var self = this;
     this.getAvailability = function(startDate, endDate){
-        var currentTime = moment(startDate * 1000).utcOffset('-0400').startOf('day').add(9, 'hours');
+        var currentTime = moment(startDate * 1000).utcOffset('-0500').startOf('day').add(9, 'hours');
 
-        var endTime = moment(endDate * 1000).utcOffset('-0400').startOf('day').add(17, 'hours');
+        var endTime = moment(endDate * 1000).utcOffset('-0500').startOf('day').add(17, 'hours');
 
         var timeSlots = [];
         while(currentTime < endTime){
