@@ -1,5 +1,12 @@
 var app = require('express')();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
+
+var bodyParser = require('body-parser');
+var scheduler = require('./schedule');
+var moment = require('moment');
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/', function (req, res) {
  	res.send('Hello World!');
@@ -65,6 +72,17 @@ app.get('/cemetery/statuses', function (req, res){
     };
 	res.send(cemeteries);
 });
+
+app.post('/cemetery/schedule', function(req, res) {
+    var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
+
+    var myScheduler = new scheduler();
+    var availability = myScheduler.getAvailability(startDate, endDate);
+
+    res.send(availability);
+});
+
 var server = app.listen(PORT, function () {
 	var host = server.address().address;
 	host = (host === '::' ? 'localhost' : host);
