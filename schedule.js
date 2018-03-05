@@ -15,7 +15,7 @@ var scheduler  = function () {
         var isDST = currentTime.isDST();
         var timeSlots = [];
         while(currentTime < endTime){
-            if(currentTime.isDST != isDST) currentTime.add(-1, 'hours');
+            if(currentTime.isDST() != isDST) currentTime.add(-1, 'hours');
             isDST = currentTime.isDST();
             var timeslot = {
                 "time": currentTime.tz(timeZone).unix(),
