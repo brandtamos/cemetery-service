@@ -12,19 +12,20 @@ var scheduler  = function () {
 
         var currentTime = moment(startDate * 1000).tz(timeZone).startOf('day').add(9, 'hours');
         var endTime = moment(endDate * 1000).tz(timeZone).startOf('day').add(17, 'hours');
-
+        var isDST = currentTime.isDST();
         var timeSlots = [];
         while(currentTime < endTime){
             var timeslot = {
-                "time": currentTime.unix(),
+                "time": currentTime.tz(timeZone).unix(),
                 "status": Math.floor(Math.random() * 10) % 2 == 0 ? "AVAILABLE" : "UNAVAILABLE"
             }
             timeSlots.push(timeslot);
 
-            currentTime.tz(timeZone).add(1, 'hours');
-
+            currentTime.add(1, 'hours');
             if(currentTime.get('hour') >= 17){
                 currentTime.tz(timeZone).add(1, 'days').startOf('day').add(9, 'hours');
+                if(currentTime.isDST != isDST) currentTime.add(-1, 'hours');
+                isDST = currentTime.isDST();
             }
         }
 
