@@ -15,6 +15,8 @@ var scheduler  = function () {
         var isDST = currentTime.isDST();
         var timeSlots = [];
         while(currentTime < endTime){
+            if(currentTime.isDST != isDST) currentTime.add(-1, 'hours');
+            isDST = currentTime.isDST();
             var timeslot = {
                 "time": currentTime.tz(timeZone).unix(),
                 "status": Math.floor(Math.random() * 10) % 2 == 0 ? "AVAILABLE" : "UNAVAILABLE"
@@ -24,8 +26,6 @@ var scheduler  = function () {
             currentTime.add(1, 'hours');
             if(currentTime.get('hour') >= 17){
                 currentTime.tz(timeZone).add(1, 'days').startOf('day').add(9, 'hours');
-                if(currentTime.isDST != isDST) currentTime.add(-1, 'hours');
-                isDST = currentTime.isDST();
             }
         }
 
