@@ -1,14 +1,17 @@
 
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 var scheduler  = function () {
     var self = this;
     var offset = '-0500';
+    var timeZone = 'America/New_York';
 
     this.getAvailability = function(startDate, endDate){
-        var currentTime = moment(startDate * 1000).utcOffset(offset).startOf('day').add(9, 'hours');
+        //var currentTime = moment(startDate * 1000).utcOffset(offset).startOf('day').add(9, 'hours');
+        //var endTime = moment(endDate * 1000).utcOffset(offset).startOf('day').add(17, 'hours');
 
-        var endTime = moment(endDate * 1000).utcOffset(offset).startOf('day').add(17, 'hours');
+        var currentTime = moment(startDate * 1000).tz(timeZone).startOf('day').add(9, 'hours');
+        var endTime = moment(endDate * 1000).tz(timeZone).startOf('day').add(17, 'hours');
 
         var timeSlots = [];
         while(currentTime < endTime){
@@ -21,7 +24,7 @@ var scheduler  = function () {
             currentTime.add(1, 'hours');
 
             if(currentTime.get('hour') >= 17){
-                currentTime.add(1, 'days').utcOffset(offset).startOf('day').add(9, 'hours');
+                currentTime.add(1, 'days').tz(timeZone).startOf('day').add(9, 'hours');
             }
         }
 
