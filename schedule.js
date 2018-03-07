@@ -16,8 +16,8 @@ var scheduler  = function () {
         var timeSlots = [];
         while(currentTime < endTime){
             if(currentTime.isDST() != isDST) {
-                if(!currentTime.isDST()) currentTime.add(-1, 'hours');
-                else currentTime.add(1, 'hours');
+                if(!currentTime.isDST()) currentTime.add(1, 'hours');
+                else currentTime.add(-1, 'hours');
             }
             isDST = currentTime.isDST();
             var timeslot = {
