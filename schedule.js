@@ -25,8 +25,8 @@ var scheduler  = function () {
             }
             isDST = currentTime.isDST();
             var timeslot = {
-                //"time": currentTime.tz(timeZone).unix(),
-                "time": currentTime.tz(timeZone).toString(),
+                "time": currentTime.tz(timeZone).unix(),
+                //"time": currentTime.tz(timeZone).toString(),
                 "status": Math.floor(Math.random() * 10) % 2 == 0 ? "AVAILABLE" : "UNAVAILABLE"
             }
             timeSlots.push(timeslot);
