@@ -10,7 +10,10 @@ var scheduler  = function () {
         //var endTime = moment(endDate * 1000).utcOffset(offset).startOf('day').add(17, 'hours');
 
         var currentTime = moment(startDate * 1000).tz(timeZone).startOf('day').add(9, 'hours');
-
+        //gross DST transition hack
+        if(currentTime.get('hour') == 10){
+            currentTime.add(-1, 'hours');
+        }
         var endTime = moment(endDate * 1000).tz(timeZone).startOf('day').add(17, 'hours');
         var isDST = currentTime.isDST();
         var timeSlots = [];
