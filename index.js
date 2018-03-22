@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 3000;
 
 var bodyParser = require('body-parser');
 var scheduler = require('./schedule');
+var caseService = require('./case');
 var moment = require('moment');
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -81,6 +82,18 @@ app.post('/cemetery/schedule', function(req, res) {
     var availability = myScheduler.getAvailability(startDate, endDate);
 
     res.send(availability);
+});
+
+app.put('/case/upsert', function(req, res) {
+	//var memorialCase = req.body.case;
+	//var myCaseService = new caseService();
+
+	//var memorialCaseResponse = myCaseService.upsertCase(memorialCase);
+
+	//res.send(memorialCaseResponse);
+
+  console.log(req.body);
+  res.send(req.body);
 });
 
 var server = app.listen(PORT, function () {
