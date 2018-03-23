@@ -85,15 +85,13 @@ app.post('/cemetery/schedule', function(req, res) {
 });
 
 app.put('/case/upsert', function(req, res) {
-	//var memorialCase = req.body.case;
-	//var myCaseService = new caseService();
+	var memorialCase = req.body;
+	var myCaseService = new caseService();
 
-	//var memorialCaseResponse = myCaseService.upsertCase(memorialCase);
+	var memorialCaseResponse = myCaseService.upsertCase(memorialCase);
 
-	//res.send(memorialCaseResponse);
+	res.send(memorialCaseResponse);
 
-  console.log(req.body);
-  res.send(req.body);
 });
 
 var server = app.listen(PORT, function () {
