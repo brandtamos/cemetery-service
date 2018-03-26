@@ -85,10 +85,11 @@ app.post('/cemetery/schedule', function(req, res) {
 });
 
 app.put('/case/upsert', function(req, res) {
-	var memorialCase = req.body;
+	var memorialCases = req.body;
+	console.log(memorialCases);
 	var myCaseService = new caseService();
 
-	var memorialCaseResponse = myCaseService.upsertCase(memorialCase);
+	var memorialCaseResponse = myCaseService.upsertCase(memorialCases);
 
 	res.send(memorialCaseResponse);
 

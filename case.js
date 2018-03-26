@@ -1,12 +1,14 @@
 var caseService = function(){
   var self = this;
 
-  this.upsertCase = function(memorialCase){
-    if(!memorialCase.hasOwnProperty('MBMS_UUID__c') || memorialCase.MBMS_UUID__c.length == 0 ){
-      memorialCase.MBMS_UUID__c = guid();
+  this.upsertCase = function(memorialCases){
+    for(var i = 0; i < memorialCases.length; i++) {
+      if (!memorialCases[i].hasOwnProperty('MBMS_UUID__c')
+          || memorialCases[i].MBMS_UUID__c.length == 0) {
+        memorialCases[i].MBMS_UUID__c = guid();
+      }
     }
-
-    return memorialCase;
+    return memorialCases;
   };
 };
 
